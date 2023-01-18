@@ -1,6 +1,7 @@
 import ProductGateway from "../gateway/product.gateway";
 import Product from "../domain/product.entity";
 import {ProductModel} from "./product.model";
+import Id from "../../@shared/domain/value-object/id.value-object";
 
 
 export default class ProductRepository implements ProductGateway {
@@ -16,7 +17,23 @@ export default class ProductRepository implements ProductGateway {
         });
     }
 
-    find(id: string): Promise<productEntity> {
-        throw new Error("Method not implemented.");
+    async find(id: string): Promise<Product> {
+        const product = await ProductModel.findOne({
+            where: {id},
+        });
+        if (!product) {
+            throw new Error(`Product id ${id} not found`);
+        }
+
+        return new Product({
+            id: new Id(product.id),
+            name: product.name,
+            description: product.description,
+            purchasePrice: product.purchasePrice,
+            stock: product.stock,
+            createdAt: product.createdAt,
+            updatedAt: product.updatedAt,
+        });
+
     }
 }
