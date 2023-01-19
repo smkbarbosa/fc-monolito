@@ -1,6 +1,6 @@
 import Id from "../../../@shared/domain/value-object/id.value-object";
 import Product from "../../domain/product.entity";
-import FindProductUsecase from "./find-product.usecase";
+import FindProductUseCase from "./find-product-use.case";
 
 const product = new Product({
     id: new Id("1"),
@@ -19,7 +19,7 @@ const MockRepository = () => {
 describe("FindProduct usecase unit test", () => {
     it("should find a product", async () => {
         const productRepository = MockRepository();
-        const useCase = new FindProductUsecase(productRepository);
+        const useCase = new FindProductUseCase(productRepository);
 
         const input = {
             id: "1",
