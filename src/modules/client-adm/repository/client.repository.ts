@@ -21,7 +21,14 @@ export default class ClientRepository implements ClientGateway {
         })
     }
 
-    add(client: Client): Promise<void> {
-        return Promise.resolve(undefined);
+    async add(client: Client): Promise<void> {
+        await ClientModel.create({
+            id: client.id.id,
+            name: client.name,
+            email: client.email,
+            address: client.address,
+            createdAt: client.createdAt,
+            updatedAt: client.updatedAt,
+        });
     }
 }
