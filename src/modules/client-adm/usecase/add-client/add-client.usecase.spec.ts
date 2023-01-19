@@ -1,4 +1,4 @@
-import AddClientUsecase from "./add-client.usecase";
+import AddClientUseCase from "./add-client-use.case";
 
 const MockRepository = () => {
     return {
@@ -10,7 +10,7 @@ const MockRepository = () => {
 describe("add client usecase test", () => {
     it("should add a client", async () => {
         const repository = MockRepository();
-        const usecase = new AddClientUsecase(repository);
+        const usecase = new AddClientUseCase(repository);
 
         const input = {
             name: "Client 1",

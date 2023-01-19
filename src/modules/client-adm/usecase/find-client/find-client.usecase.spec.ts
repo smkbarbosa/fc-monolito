@@ -1,5 +1,5 @@
 import Id from "../../../@shared/domain/value-object/id.value-object";
-import FindClientUsecase from "./find-client.usecase";
+import FindClientUseCase from "./find-client-use.case";
 
 const client = ({
     id: new Id("1"),
@@ -20,7 +20,7 @@ const MockRepository = () => {
 describe("find client usecase test", () => {
     it("should find a client", async () => {
         const repository = MockRepository();
-        const usecase = new FindClientUsecase(repository);
+        const usecase = new FindClientUseCase(repository);
 
         const input = {
             id: "1",
