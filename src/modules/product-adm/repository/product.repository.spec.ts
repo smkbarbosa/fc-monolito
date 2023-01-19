@@ -1,8 +1,8 @@
+import { Sequelize } from "sequelize-typescript";
 import Id from "../../@shared/domain/value-object/id.value-object";
 import Product from "../domain/product.entity";
-import {ProductModel} from "./product.model";
+import { ProductModel } from "./product.model";
 import ProductRepository from "./product.repository";
-import {Sequelize} from "sequelize-typescript";
 
 describe("ProductRepository test", () => {
     let sequelize: Sequelize;
@@ -12,7 +12,7 @@ describe("ProductRepository test", () => {
             dialect: "sqlite",
             storage: ":memory:",
             logging: false,
-            sync: {force: true},
+            sync: { force: true },
         });
 
         await sequelize.addModels([ProductModel]);
@@ -36,7 +36,7 @@ describe("ProductRepository test", () => {
         await productRepository.add(product);
 
         const productDb = await ProductModel.findOne({
-            where: {id: productProps.id.id},
+            where: { id: productProps.id.id },
         });
 
         expect(productProps.id.id).toEqual(productDb.id);
@@ -58,6 +58,7 @@ describe("ProductRepository test", () => {
             createdAt: new Date(),
             updatedAt: new Date(),
         });
+
         const product = await productRepository.find("1");
 
         expect(product.id.id).toEqual("1");
