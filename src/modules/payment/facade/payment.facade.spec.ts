@@ -1,8 +1,6 @@
 import {Sequelize} from "sequelize-typescript";
 import TransactionModel from "../repository/transaction.model";
-import TransactionRepository from "../repository/transaction.repository";
-import ProcessPaymentUseCase from "../usecase/process-payment/process-payment.usecase";
-import PaymentFacade from "./payment.facade";
+import PaymentFacadeFactory from "../factory/payment.facade.factory";
 
 describe("PaymentFacade test", () => {
     let sequelize: Sequelize;
@@ -24,21 +22,22 @@ describe("PaymentFacade test", () => {
     });
 
     it("should process a payment", async () => {
-       const repository = new TransactionRepository();
-       const useCase = new ProcessPaymentUseCase(repository);
-       const facade = new PaymentFacade(useCase);
+        // const repository = new TransactionRepository();
+        // const useCase = new ProcessPaymentUseCase(repository);
+        // const facade = new PaymentFacade(useCase);
+        const facade = PaymentFacadeFactory.create();
 
-       const input = {
-              orderId: "1",
-                amount: 100,
-       }
+        const input = {
+            orderId: "1",
+            amount: 100,
+        }
 
-       const output = await facade.processPayment(input);
+        const output = await facade.processPayment(input);
 
-       expect(output.transactionId).toBeDefined()
-       expect(output.orderId).toBe(input.orderId);
-       expect(output.amount).toBe(input.amount);
-       expect(output.status).toBe("approved");
+        expect(output.transactionId).toBeDefined()
+        expect(output.orderId).toBe(input.orderId);
+        expect(output.amount).toBe(input.amount);
+        expect(output.status).toBe("approved");
 
     });
 });
