@@ -12,7 +12,6 @@ export default class FindInvoiceUseCase {
     }
 
     private toDTO(invoice: any): FindInvoiceUsCaseOutputDto {
-        // @ts-ignore
         return {
             id: invoice.id,
             document: invoice.document,
@@ -31,6 +30,7 @@ export default class FindInvoiceUseCase {
                 price: item.price,
             })),
             total: invoice.total,
+            createdAt: invoice.createdAt,
         };
     }
 }
