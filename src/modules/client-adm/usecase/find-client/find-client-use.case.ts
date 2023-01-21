@@ -10,15 +10,19 @@ export default class FindClientUseCase {
 
     async execute(input: FindClientInputDto): Promise<FindClientOutputDto> {
 
-        const result = await this._clientRepository.find(input.id)
+        const client = await this._clientRepository.find(input.id)
 
         return {
-            id: result.id.id,
-            name: result.name,
-            email: result.email,
-            address: result.address,
-            createdAt: result.createdAt,
-            updatedAt: result.updatedAt,
+            id: client.id.id,
+            name: client.name,
+            email: client.email,
+            document: client.document,
+            street: client.address.street,
+            number: client.address.number,
+            complement: client.address.complement,
+            city: client.address.city,
+            state: client.address.state,
+            zipCode: client.address.zipCode,
         }
 
 

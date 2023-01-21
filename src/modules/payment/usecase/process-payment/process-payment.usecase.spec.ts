@@ -4,7 +4,7 @@ import ProcessPaymentUseCase from "./process-payment.usecase";
 
 const transaction = new Transaction({
     id: new Id("1"),
-    amount: 99,
+    amount: 150,
     orderId: "1",
     status: "approved",
 });
