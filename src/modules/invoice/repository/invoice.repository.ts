@@ -1,16 +1,16 @@
-import InvoiceGateway from "../gateway/invoice.gateway";
-import Invoice from "../domain/invoice.entity";
-
-import Product from "../domain/product.entity";
-
 import Id from "../../@shared/domain/value-object/id.value-object";
 import Address from "../domain/address.vo";
-import InvoiceModel from "./invoice.model";
-import {InvoiceItemModel} from "./item.model";
+import Invoice from "../domain/invoice.entity";
+import invoiceEntity from "../domain/invoice.entity";
+import Product from "../domain/product.entity";
+import InvoiceGateway from "../gateway/invoice.gateway";
+import { InvoiceModel } from "./invoice.model";
+import { InvoiceItemModel } from "./item.model";
 
 export default class InvoiceRepository implements InvoiceGateway {
-    async create(invoice: Invoice): Promise<void> {
-        await InvoiceModel.create({
+    async generate(invoice: invoiceEntity): Promise<void> {
+        await InvoiceModel.create(
+            {
                 id: invoice.id.id,
                 name: invoice.name,
                 document: invoice.document,
@@ -30,10 +30,10 @@ export default class InvoiceRepository implements InvoiceGateway {
             },
             {
                 include: [InvoiceItemModel],
-            });
+            }
+        );
     }
-
-    find(id: string): Promise<Invoice> {
+    find(id: string): Promise<invoiceEntity> {
         return InvoiceModel.findOne({
             where: {
                 id,
@@ -58,10 +58,10 @@ export default class InvoiceRepository implements InvoiceGateway {
                             id: new Id(item.id),
                             name: item.name,
                             price: item.price,
-                        })),
-
+                        })
+                ),
                 createdAt: invoice.createdAt,
             });
-        })
+        });
     }
 }

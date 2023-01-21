@@ -12,7 +12,7 @@ export default class GenerateInvoiceUseCase implements UseCaseInterface {
 
     async execute(input: GenerateUseCaseInputDto): Promise<GenerateInvoiceUseCaseOutputDto> {
         const invoice = await this.createInvoice(input);
-        await this.invoiceGateway.create(invoice);
+        await this.invoiceGateway.generate(invoice);
 
         return this.toOutputDTO(invoice);
     }

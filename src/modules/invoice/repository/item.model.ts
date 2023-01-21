@@ -6,27 +6,21 @@ import {
     PrimaryKey,
     Table,
 } from "sequelize-typescript";
-import InvoiceModel  from "./invoice.model";
+import { InvoiceModel } from "./invoice.model";
+
 
 @Table({
-    tableName: "invoices_items",
+    tableName: "invoice_items",
     timestamps: false,
 })
 export class InvoiceItemModel extends Model {
     @PrimaryKey
+    @Column
+    declare  id: string;
     @Column({ allowNull: false })
-    id: string;
-
-    @ForeignKey(() => InvoiceModel)
+    declare  name: string;
     @Column({ allowNull: false })
-    invoice_id: string;
-
-    @BelongsTo(() => InvoiceModel)
-    invoice: InvoiceModel;
-
-    @Column({ allowNull: false })
-    name: string;
-
-    @Column({ allowNull: false })
-    price: number;
+    declare  price: number;
+    @BelongsTo(() => InvoiceModel,{ foreignKey: 'invoice_id'})
+    Invoice: InvoiceModel[];
 }

@@ -1,7 +1,7 @@
 import GenerateInvoiceUseCase from "./generate.usecase";
 
 const MockRepository = () => ({
-    create: jest.fn(),
+    generate: jest.fn(),
     find: jest.fn(),
 });
 
@@ -36,7 +36,7 @@ describe('GenerateInvoiceUseCase', () => {
         const result = await usecase.execute(input);
 
         expect(result.id).toBeDefined();
-        expect(mockRepository.create).toHaveBeenCalled();
+        expect(mockRepository.generate).toHaveBeenCalled();
         expect(result.name).toEqual(input.name);
         expect(result.document).toEqual(input.document);
         expect(result.street).toEqual(input.street);
