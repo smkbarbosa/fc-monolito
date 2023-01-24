@@ -53,7 +53,7 @@ export interface FindInvoiceFacadeOutputDto {
     createdAt: Date;
 }
 
-export default interface InvoiceFacadeInterface {
+export interface InvoiceFacadeInterface {
     generate(
         invoice: GenerateInvoiceFacadeInputDto): Promise<GenerateInvoiceFacadeOutputDto>;
 

@@ -32,7 +32,7 @@ describe("PaymentFacade test", () => {
             amount: 100,
         }
 
-        const output = await facade.processPayment(input);
+        const output = await facade.process(input);
 
         expect(output.transactionId).toBeDefined()
         expect(output.orderId).toBe(input.orderId);
