@@ -26,9 +26,17 @@ clientRoute.post("/",
 
             const output = await clientFacade.find({id: clientDto.id});
             res.send(output);
+            console.log(output);
         } catch (err) {
             res.status(500).send(err);
         }
     });
 
+clientRoute.get("/:id", async (req: Request, res: Response) => {
+    const clientadmFace = ClientAdmFacadeFactory.create();
+    const output = await clientadmFace.find({id: req.params.id});
 
+    res.format({
+        json: async () => res.send(output)
+    });
+});

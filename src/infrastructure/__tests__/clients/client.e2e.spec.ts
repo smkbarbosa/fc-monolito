@@ -26,9 +26,6 @@ describe("E2E test for client adm", () => {
 
             });
 
-        // const response = await request(app)
-        //     .get(`/clients/${client.body.id}`).send();
-
         expect(response.status).toBe(200);
         expect(response.body.name).toBe("Client 1");
         expect(response.body.email).toBe("xx@gmil.com");
