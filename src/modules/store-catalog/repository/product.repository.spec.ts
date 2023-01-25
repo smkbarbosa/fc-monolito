@@ -1,5 +1,5 @@
 import {Sequelize} from "sequelize-typescript";
-import ProductModel from "./product.model";
+import ProductCatalogModel from "./productCatalogModel";
 import ProductRepository from "./product.repository";
 
 describe("ProductRepository unit test", () => {
@@ -13,7 +13,7 @@ describe("ProductRepository unit test", () => {
             sync: {force: true},
         });
 
-        await sequelize.addModels([ProductModel]);
+        await sequelize.addModels([ProductCatalogModel]);
         await sequelize.sync();
     });
 
@@ -22,14 +22,14 @@ describe("ProductRepository unit test", () => {
     });
 
     it("should find all products", async () => {
-        await ProductModel.create({
+        await ProductCatalogModel.create({
             id: "1",
             name: "Product 1",
             description: "Product 1 description",
             salesPrice: 100,
         });
 
-        await ProductModel.create({
+        await ProductCatalogModel.create({
             id: "2",
             name: "Product 2",
             description: "Product 2 description",
@@ -51,7 +51,7 @@ describe("ProductRepository unit test", () => {
     });
 
     it("should find one products", async () => {
-        await ProductModel.create({
+        await ProductCatalogModel.create({
             id: "1",
             name: "Product 1",
             description: "Product 1 description",

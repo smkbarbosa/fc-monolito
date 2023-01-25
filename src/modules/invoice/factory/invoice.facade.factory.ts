@@ -1,4 +1,4 @@
-import InvoiceFacadeInterface from "../facade/invoice.facade.interface";
+import {InvoiceFacadeInterface} from "../facade/invoice.facade.interface";
 import InvoiceRepository from "../repository/invoice.repository";
 import GenerateInvoiceUseCase from "../usecase/generate/generate.usecase";
 import FindInvoiceUseCase from "../usecase/find/find.usecase";
